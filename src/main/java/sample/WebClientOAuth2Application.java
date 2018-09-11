@@ -18,19 +18,6 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 
 @SpringBootApplication
 public class WebClientOAuth2Application {
-
-	@Bean
-	InMemoryReactiveClientRegistrationRepository clientRegistrationRepository() {
-		ClientRegistration clientRegistration = ClientRegistrations.fromOidcIssuerLocation("http://localhost:8090/uaa/oauth/token")
-				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-				.scope("message.read")
-				.registrationId("uaa")
-				.clientId("general-messaging")
-				.clientSecret("secret")
-				.build();
-		return new InMemoryReactiveClientRegistrationRepository(clientRegistration);
-	}
-
 	@Bean
 	ServerOAuth2AuthorizedClientRepository authorizedClientRepository() {
 		return new UnAuthenticatedServerOAuth2AuthorizedClientRepository();
